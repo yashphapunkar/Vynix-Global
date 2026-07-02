@@ -1,0 +1,6 @@
+{
+  "name": "Vynix Global",
+  "description": "Premium Merchant Exporter based in Indore, India. Sourcing high-grade Automotive Parts, Premium Coffee, and Industrial Goods with international quality standards.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
