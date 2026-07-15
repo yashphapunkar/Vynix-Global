@@ -1,6 +1,6 @@
 import { useState, useEffect, ChangeEvent, FormEvent, MouseEvent } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Mail, Phone, MapPin, Send, Trash2, CheckCircle2, History, Anchor, Briefcase, FileText } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Trash2, CheckCircle2, History, Anchor, Briefcase, FileText, Loader2 } from "lucide-react";
 import { BasketItem, SavedInquiry, InquiryForm } from "../types";
 
 interface QuoteBuilderProps {
@@ -30,6 +30,7 @@ export default function QuoteBuilder({
 
   const [savedInquiries, setSavedInquiries] = useState<SavedInquiry[]>([]);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false); // Added loading state for API call
   const [activeTab, setActiveTab] = useState<"form" | "history">("form");
 
   // Load saved inquiries on mount
@@ -63,7 +64,7 @@ export default function QuoteBuilder({
     return { type: "FCL (Full Container Load)", desc: "Meets baseline FCL threshold." };
   };
 
-  const handleFormSubmit = (e: FormEvent) => {
+  const handleFormSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     if (!formData.fullName || !formData.email || !formData.requirementDetail) {
@@ -71,44 +72,90 @@ export default function QuoteBuilder({
       return;
     }
 
-    const newInquiry: SavedInquiry = {
-      id: "RFQ-" + Math.floor(100000 + Math.random() * 900000),
-      fullName: formData.fullName,
-      email: formData.email,
-      companyName: formData.companyName || "Private Trader",
-      phoneNumber: formData.phoneNumber || "Not Provided",
-      category: formData.category,
-      requirementDetail: formData.requirementDetail,
-      items: [...formData.items],
-      date: new Date().toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "short",
-        day: "numeric"
-      }),
-      status: "pending"
+    setIsSubmitting(true);
+
+    const rfqId = "RFQ-" + Math.floor(100000 + Math.random() * 900000);
+    const cargoManifestString = basket.length > 0 
+      ? basket.map(item => `- ${item.product.name} (HS Code: ${item.product.hsCode}): ${item.quantity} ${item.unit}`).join("\n")
+      : "No individual items selected from catalog.";
+
+    // Web3Forms Payload
+    const web3FormsPayload = {
+      access_key: "YOUR_WEB3FORMS_ACCESS_KEY_HERE", // Replace with your actual Web3Forms Access Key
+      subject: `New Maritime RFQ Logged [${rfqId}] - ${formData.companyName || "Private Trader"}`,
+      from_name: "Vynix Trade Platform",
+      "RFQ ID": rfqId,
+      "Full Name": formData.fullName,
+      "Corporate Email": formData.email,
+      "Company Name": formData.companyName || "Private Trader",
+      "Phone / WhatsApp": formData.phoneNumber || "Not Provided",
+      "Sourcing Segment": formData.category,
+      "Shipping Assessment": `${calculateDisplacement().type} (${calculateDisplacement().desc})`,
+      "Cargo Manifest": cargoManifestString,
+      "Requirement Details": formData.requirementDetail,
     };
 
-    const updatedInquiries = [newInquiry, ...savedInquiries];
-    setSavedInquiries(updatedInquiries);
-    localStorage.setItem("vynix_inquiries", JSON.stringify(updatedInquiries));
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify(web3FormsPayload)
+      });
 
-    // Reset Form and Basket
-    setFormData({
-      fullName: "",
-      email: "",
-      companyName: "",
-      phoneNumber: "",
-      category: "all",
-      requirementDetail: "",
-      items: []
-    });
-    clearBasket();
-    setIsSuccess(true);
+      const result = await response.json();
 
-    // Auto-scroll to top of section or success block
-    setTimeout(() => {
-      scrollToSection("contact");
-    }, 100);
+      if (result.success) {
+        // Save to internal browser history only on successful API submission
+        const newInquiry: SavedInquiry = {
+          id: rfqId,
+          fullName: formData.fullName,
+          email: formData.email,
+          companyName: formData.companyName || "Private Trader",
+          phoneNumber: formData.phoneNumber || "Not Provided",
+          category: formData.category,
+          items: [...formData.items],
+          requirementDetail: formData.requirementDetail,
+          date: new Date().toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "numeric"
+          }),
+          status: "pending"
+        };
+
+        const updatedInquiries = [newInquiry, ...savedInquiries];
+        setSavedInquiries(updatedInquiries);
+        localStorage.setItem("vynix_inquiries", JSON.stringify(updatedInquiries));
+
+        // Reset Form and Basket
+        setFormData({
+          fullName: "",
+          email: "",
+          companyName: "",
+          phoneNumber: "",
+          category: "all",
+          requirementDetail: "",
+          items: []
+        });
+        clearBasket();
+        setIsSuccess(true);
+
+        // Auto-scroll to top of section or success block
+        setTimeout(() => {
+          scrollToSection("contact");
+        }, 100);
+      } else {
+        alert(result.message || "Something went wrong during submission. Please try again.");
+      }
+    } catch (error) {
+      console.error("Web3Forms Submission Error:", error);
+      alert("Network error. Unable to send inquiry right now.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const deleteSavedInquiry = (id: string, e: MouseEvent) => {
@@ -454,11 +501,21 @@ export default function QuoteBuilder({
                   {/* Submit Button */}
                   <button
                     type="submit"
-                    className="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold tracking-widest text-xs uppercase py-4 rounded-lg flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md shadow-teal-600/10 active:scale-99"
+                    disabled={isSubmitting}
+                    className="w-full bg-teal-600 hover:bg-teal-700 disabled:bg-teal-500 text-white font-bold tracking-widest text-xs uppercase py-4 rounded-lg flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md shadow-teal-600/10 active:scale-99"
                     id="submit-rfq-btn"
                   >
-                    <Send className="h-4 w-4" />
-                    <span>Submit Formal Inquiry</span>
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                        <span>Transmitting Data...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Send className="h-4 w-4" />
+                        <span>Submit Formal Inquiry</span>
+                      </>
+                    )}
                   </button>
                 </motion.form>
               ) : (
