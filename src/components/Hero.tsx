@@ -61,8 +61,9 @@ export default function Hero({ scrollToSection }: HeroProps) {
             id="hero-subtext"
           >
             Vynix Global is India's premier export facilitator. We deliver high-integrity{" "}
-            <span className="text-teal-300 font-semibold">Automotive Components</span> and{" "}
-            <span className="text-teal-300 font-semibold">Premium Indian Coffee</span> with certified quality, sourcing directly from the best OEMs and single estates all over India to global markets.
+            <span className="text-teal-300 font-semibold">Automotive Components</span>,{" "}
+            <span className="text-teal-300 font-semibold">Cattle Feed</span>, and{" "}
+            <span className="text-teal-300 font-semibold">Premium Indian Coffee</span> with certified quality, sourcing directly from top OEMs, feed mills, and estates across India to global markets.
           </motion.p>
 
           {/* CTAs */}

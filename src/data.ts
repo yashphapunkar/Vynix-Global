@@ -144,6 +144,171 @@ export const PRODUCTS: Product[] = [
       "Tasting Profile": "Zero acidity, earthy mustiness, heavy syrupy body, notes of wood, tobacco, and baking spices"
     },
     packaging: ["60kg high-quality Jute bags", "Reinforced dry container liners"]
+  },
+  {
+    id: "cattle-rice-ddgs",
+    name: "Rice DDGS (Distillers Dried Grains)",
+    category: "cattle-feed",
+    description: "High-protein (42-45% CP) dried grain solubles derived from rice ethanol distillation for dairy cattle and aquafeed.",
+    longDescription: "Rice DDGS is a high-density protein and energy feed ingredient produced during bio-ethanol distillation of select rice grains. Rich in essential amino acids, bypass protein, and digestible fiber, it substantially boosts milk yields in dairy cattle and improves growth in livestock.",
+    image: "/images/cattle-feed/rice-ddgs.jpeg",
+    hsCode: "2303.30.00",
+    moq: "20 Metric Tons",
+    specifications: {
+      "Crude Protein": "42% - 45% Min",
+      "Moisture Content": "Max 10.0%",
+      "Crude Fat": "3% - 5% Min",
+      "Crude Fiber": "Max 5.0%",
+      "Aflatoxin": "Below 20 PPB (EU/US Export Standard)",
+      "Form": "Golden Granular Powder"
+    },
+    packaging: ["50kg PP Bags", "1 MT Jumbo Bags", "Bulk Container Liners"]
+  },
+  {
+    id: "cattle-maize-ddgs",
+    name: "Maize / Corn DDGS",
+    category: "cattle-feed",
+    description: "High-energy corn distillers dried grains (28-30% CP) for enhanced dairy cattle and livestock nutrition.",
+    longDescription: "Manufactured from select yellow corn during ethanol production, Maize DDGS delivers an exceptional combination of digestible protein, organic phosphorus, and metabolic energy. It is widely preferred by commercial feed millers and livestock farms for its high palatability.",
+    image: "/images/cattle-feed/maize-ddgs.jpeg",
+    hsCode: "2303.30.00",
+    moq: "20 Metric Tons",
+    specifications: {
+      "Crude Protein": "28% - 30% Min",
+      "Crude Fat": "6% - 8% Min",
+      "Moisture Content": "Max 10.0%",
+      "Crude Fiber": "Max 8.0%",
+      "Form": "Golden Yellow Coarse Meal"
+    },
+    packaging: ["50kg PP Bags", "1 MT Jumbo Bags"]
+  },
+  {
+    id: "cattle-dorb",
+    name: "De-Oiled Rice Bran (DORB)",
+    category: "cattle-feed",
+    description: "High-fiber extracted rice bran meal (14-16% CP) used as a core ingredient in cattle feed pellets and daily farm rations.",
+    longDescription: "De-Oiled Rice Bran (DORB) is produced by solvent-extracting oil from fresh rice bran. Containing 14-16% crude protein and rich in metabolic energy and insoluble fiber, DORB serves as a dependable, highly digestible raw material for cattle feed manufacturing.",
+    image: "/images/cattle-feed/dorb.jpeg",
+    hsCode: "2306.90.90",
+    moq: "20 Metric Tons",
+    specifications: {
+      "Crude Protein": "14% - 16% Min",
+      "Oil Content": "Max 1.0%",
+      "Moisture Content": "Max 10.0%",
+      "Crude Fiber": "12% - 14% Max",
+      "Sand & Silica": "Max 2.5%",
+      "Form": "Fine Ground Meal"
+    },
+    packaging: ["50kg Jute / PP Bags", "Bulk Container Liners"]
+  },
+  {
+    id: "cattle-mustard-doc",
+    name: "Mustard De-Oiled Meal (Mustard DOC)",
+    category: "cattle-feed",
+    description: "Nutrient-dense protein meal (36-38% CP) derived from mustard seed extraction to boost butterfat and milk production.",
+    longDescription: "Extracted from high-grade mustard seeds, Mustard DOC is an economical, high-protein meal with a rich amino acid profile. It is widely exported across international dairy markets to increase butterfat percentage and daily milk yield in cattle.",
+    image: "/images/cattle-feed/mustard-doc.png",
+    hsCode: "2306.90.11",
+    moq: "20 Metric Tons",
+    specifications: {
+      "Crude Protein": "36% - 38% Min",
+      "Oil Content": "Max 1.0%",
+      "Moisture Content": "Max 10.0%",
+      "Crude Fiber": "Max 10.0%",
+      "Sand & Silica": "Max 2.0%",
+      "Form": "Brown Meal / Cake Flakes"
+    },
+    packaging: ["50kg PP Bags", "1 MT Jumbo Bags"]
+  },
+  {
+    id: "cattle-soy-doc",
+    name: "Non-GMO Soybean Meal (Hi-Pro Soy DOC)",
+    category: "cattle-feed",
+    description: "Premium 46-48% protein Non-GMO soybean extract meal engineered for maximum digestibility in dairy cattle.",
+    longDescription: "Sourced from central India's non-GMO soybean belt, our Soybean Meal is recognized globally for its superior amino acid spectrum, ultra-low moisture, and 100% non-GMO status. It represents the gold standard for high-yielding dairy cattle feeds.",
+    image: "/images/cattle-feed/soy-doc.png",
+    hsCode: "2304.00.90",
+    moq: "20 Metric Tons",
+    specifications: {
+      "Crude Protein": "46% - 48% Min",
+      "Fat Content": "Max 1.2%",
+      "Moisture Content": "Max 11.0%",
+      "Crude Fiber": "Max 6.0%",
+      "Quality Standard": "100% Non-GMO Certified"
+    },
+    packaging: ["50kg Poly-lined Bags", "1 MT Jumbo Bags"]
+  },
+  {
+    id: "cattle-corn-gluten-meal",
+    name: "Corn Gluten Meal (CGM 60% Protein)",
+    category: "cattle-feed",
+    description: "Ultra high-protein (60% CP) corn concentrate meal rich in xanthophyll and digestible amino acids.",
+    longDescription: "Corn Gluten Meal (CGM) is a golden, dense protein concentrate produced during wet milling of yellow maize. Containing 60% crude protein alongside high metabolizable energy, it is an essential ingredient in specialty cattle rations, poultry feed, and aqua diets.",
+    image: "/images/cattle-feed/corn-gluten-meal.jpeg",
+    hsCode: "2303.10.00",
+    moq: "20 Metric Tons",
+    specifications: {
+      "Crude Protein": "60.0% Min",
+      "Moisture Content": "Max 10.0%",
+      "Crude Fat": "Max 2.5%",
+      "Crude Fiber": "Max 2.5%",
+      "Form": "Bright Golden Yellow Powder"
+    },
+    packaging: ["50kg Woven PP Bags", "1 MT Jumbo Bags"]
+  },
+  {
+    id: "cattle-guar-korma",
+    name: "Guar Korma Meal (50-55% High Protein)",
+    category: "cattle-feed",
+    description: "Toasted high-protein guar seed meal (50-55% CP) rich in essential amino acids and methionine for dairy cattle.",
+    longDescription: "Guar Korma is a high-protein feed ingredient processed by thermo-mechanically roasting the germ of guar seeds. Completely free from anti-nutritional factors and trypsin inhibitors, Guar Korma provides digestible protein and energy that enhances milk yields and herd health.",
+    image: "/images/cattle-feed/guar-korma.png",
+    hsCode: "2306.90.90",
+    moq: "20 Metric Tons",
+    specifications: {
+      "Crude Protein": "50% - 55% Min",
+      "Crude Fat": "5% - 7% Min",
+      "Moisture Content": "Max 8.0%",
+      "Crude Fiber": "Max 6.0%",
+      "Digestibility": "Above 90%"
+    },
+    packaging: ["50kg HDPP Bags", "1 MT Jumbo Bags"]
+  },
+  {
+    id: "cattle-cottonseed-cake",
+    name: "Cottonseed Oil Cake / Meal (CSOC)",
+    category: "cattle-feed",
+    description: "High-energy cottonseed oilcake (24-28% CP, 6-8% Fat) widely preferred in commercial dairy farming to raise milk butterfat.",
+    longDescription: "Derived from mechanical extraction of premium Indian cotton seeds, Cottonseed Oil Cake is an energy-dense supplement favored by dairy farmers. Its unique combination of residual natural fats and crude protein directly improves cattle digestion and butterfat yield in milk.",
+    image: "/images/cattle-feed/cottonseed-cake.png",
+    hsCode: "2306.10.20",
+    moq: "20 Metric Tons",
+    specifications: {
+      "Crude Protein": "24% - 28% Min",
+      "Oil / Fat Content": "6% - 8% Min",
+      "Moisture Content": "Max 10.0%",
+      "Crude Fiber": "Max 10.0% - 12.0%",
+      "Form": "Solid Pressed Flakes / Cake"
+    },
+    packaging: ["50kg Jute / PP Bags", "Bulk Container Shipment"]
+  },
+  {
+    id: "cattle-feed-pellets",
+    name: "Balanced Dairy Cattle Feed Pellets",
+    category: "cattle-feed",
+    description: "Steam-pelleted compound cattle feed enriched with essential proteins, minerals, and vitamins for daily milk production.",
+    longDescription: "Specially formulated compound cattle feed pellets manufactured to boost daily milk yield and maintain herd health. Formulated from natural grains, oilcakes, and essential mineral mixtures for maximum digestibility and minimal wastage.",
+    image: "/images/cattle-feed/feed-pellets.png",
+    hsCode: "2309.90.10",
+    moq: "15 Metric Tons",
+    specifications: {
+      "Crude Protein": "20% - 22% Min",
+      "Crude Fat": "3% - 4% Min",
+      "Moisture Content": "Max 10.0%",
+      "Form": "Steam Pellets (6mm - 8mm)",
+      "Additives": "Vitamins & Chelated Minerals Enriched"
+    },
+    packaging: ["50kg Woven Bags", "1 MT Jumbo Bags"]
   }
 ];
 

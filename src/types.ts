@@ -1,7 +1,7 @@
 export interface Product {
   id: string;
   name: string;
-  category: "automotive" | "coffee";
+  category: "automotive" | "coffee" | "cattle-feed";
   description: string;
   longDescription: string;
   image: string;
@@ -22,7 +22,7 @@ export interface InquiryForm {
   email: string;
   companyName: string;
   phoneNumber: string;
-  category: "automotive" | "coffee" | "all";
+  category: "automotive" | "coffee" | "cattle-feed" | "all";
   requirementDetail: string;
   items: BasketItem[];
 }

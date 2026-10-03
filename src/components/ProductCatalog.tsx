@@ -15,7 +15,7 @@ export default function ProductCatalog({
   addToBasket,
   updateBasketQuantity
 }: ProductCatalogProps) {
-  const [selectedCategory, setSelectedCategory] = useState<"all" | "automotive" | "coffee">("all");
+  const [selectedCategory, setSelectedCategory] = useState<"all" | "automotive" | "coffee" | "cattle-feed">("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [activeDetailProduct, setActiveDetailProduct] = useState<Product | null>(null);
 
@@ -26,12 +26,13 @@ export default function ProductCatalog({
   const categories = [
     { label: "All Portfolio", value: "all" },
     { label: "Automotive Parts", value: "automotive" },
-    { label: "Premium Coffee", value: "coffee" }
+    { label: "Premium Coffee", value: "coffee" },
+    { label: "Cattle Feed", value: "cattle-feed" }
   ];
 
   // Set default units based on product category
   const getDefaultUnitForCategory = (category: string) => {
-    if (category === "coffee") return "Metric Tons (MT)";
+    if (category === "coffee" || category === "cattle-feed") return "Metric Tons (MT)";
     if (category === "automotive") return "Units";
     return "Boxes";
   };
@@ -363,11 +364,12 @@ export default function ProductCatalog({
                       onChange={(e) => setModalUnit(e.target.value)}
                       className="bg-white border border-slate-200 text-xs font-semibold text-slate-700 p-2.5 rounded-lg focus:outline-teal-600"
                     >
-                      {activeDetailProduct.category === "coffee" ? (
+                      {activeDetailProduct.category === "coffee" || activeDetailProduct.category === "cattle-feed" ? (
                         <>
                           <option value="Metric Tons (MT)">Metric Tons (MT)</option>
                           <option value="FCL Container (20ft)">FCL Container (20ft)</option>
-                          <option value="Jute Bags (60kg)">Jute Bags (60kg)</option>
+                          <option value="50kg PP / Jute Bags">50kg PP / Jute Bags</option>
+                          <option value="1 MT HDPE Jumbo Bags">1 MT HDPE Jumbo Bags</option>
                         </>
                       ) : (
                         <>

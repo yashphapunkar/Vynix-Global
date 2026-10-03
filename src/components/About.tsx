@@ -103,7 +103,7 @@ export default function About() {
                 We specialize in bridging the gap between world-class Indian manufacturing standards and global industrial buyers. By positioning our sourcing directly across the top industrial and agricultural clusters of India, we maintain immediate oversight over production quality, raw material sourcing, and cargo loading.
               </p>
               <p>
-                Whether securing precision-engineered auto parts from the best OEMs, or hand-sorting premium washed Arabica beans from the shade-grown estates of South India, we operate with a singular, unyielding mandate: <strong className="font-semibold text-teal-600">"Trust Delivered."</strong>
+                Whether securing precision-engineered auto parts, high-protein Cattle Feed, or hand-sorting premium washed Arabica beans from shade-grown estates, we operate with a singular, unyielding mandate: <strong className="font-semibold text-teal-600">"Trust Delivered."</strong>
               </p>
             </div>
 
