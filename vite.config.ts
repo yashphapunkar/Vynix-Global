@@ -3,11 +3,10 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 import {defineConfig} from 'vite';
 
-export default defineConfig(({command}) => {
+export default defineConfig(() => {
   return {
     plugins: [react(), tailwindcss()],
-    // '/Vynix-Global/' for production builds (GitHub Pages), '/' for local dev
-    base: command === 'build' ? '/Vynix-Global/' : '/',
+    base: '/',
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),
